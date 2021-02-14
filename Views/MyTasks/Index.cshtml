@@ -1,0 +1,54 @@
+﻿@model IEnumerable<TasksModule.Models.MyTask>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of Tasks</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Assigned)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DueDate)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Assigned)
+                </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a class="btn btn-info" asp-action="AssignTasks" asp-route-id="@item.Id">Assign</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
